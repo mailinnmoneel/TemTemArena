@@ -8,24 +8,24 @@ namespace TemTemArena
 {
     public class Arena
     {
-       
+        public bool IsRunning { get; private set; }
         public Arena()
         {
-
+            IsRunning = true;
         }
-        public void StartGameInfo()
+        public void Stop()
         {
-            Console.WriteLine("Welcome to TemTem Arena!");
+            IsRunning = false;
+        }
+        public void ShowGameInfo()
+        {
+            Console.WriteLine("************************");
             Console.WriteLine("Available commands are;");
-            //Console.WriteLine("Start Game");
             Console.WriteLine("Exit");
             Console.WriteLine("Nibble");
-            //Console.WriteLine("Recharge");
+            Console.WriteLine("************************");
             
         }
-        public void FightLogg() //??
-        {
-            Console.WriteLine();
-        }
+     
     }
 }

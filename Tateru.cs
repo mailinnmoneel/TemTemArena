@@ -13,10 +13,8 @@ namespace TemTemArena
         public float Damage { get; set; }
         public float Stamina { get; set; }
         public bool IsFainted { get; set; }
+        public string Name { get; set; }
 
-        public string Name;
-    
-        //Constructor
         public Tateru(string name, float health, float damage, float stamina)
         {
             Name = name;
@@ -24,9 +22,9 @@ namespace TemTemArena
             Damage = damage;
             Stamina = stamina;
         }
-        public void PrintInfo(string extrainfo)//Denne var bare en øvelse på ovverride
+        public void Attack()
         {
-            Console.WriteLine(Name + extrainfo);
+            Nibble();
         }
         public float Nibble()
         {
@@ -36,13 +34,13 @@ namespace TemTemArena
 
         public void LooseHealt(float damage)
         {
-            Console.WriteLine("Tateru lost healt");
+            Health =- Damage;
+            Console.WriteLine( Name + " lost" + " healt");
         }
         public void Recharge()
         {
-            //if(stamina < 20)
-            //Stamina = 40
-            Console.WriteLine("Tateru used Recharge! Stamina is now " + Stamina);
+            Stamina += 50f;
+            Console.WriteLine($"{Name} used Recharge! Stamina is now {Stamina}");
         }
     }
 }

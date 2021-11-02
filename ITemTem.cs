@@ -8,12 +8,13 @@ namespace TemTemArena
 {
     public interface ITemTem
     {
+        public string Name { get; set; }
         float Health { get; set; }
         float Damage { get; set; }
         float Stamina { get; set; }
         bool IsFainted { get; set; }
         void LooseHealt(float damage);
         void Recharge();
-       
+        void Attack();
     }
 }
