@@ -12,6 +12,7 @@ namespace TemTemArena
         public float Stamina { get; set; }
         public float Damage { get; set; }
         public bool IsFainted { get; set; }
+        public bool IsNPC { get; set; }
         public string Name { get; set; }
  
         public Ganki(string name, float health, float damage, float stamina)
@@ -24,7 +25,8 @@ namespace TemTemArena
     
         public void LooseHealt(float damage)
         {
-            Console.WriteLine("Ganki took " + damage + " and lost " + Health);
+            Health = -damage;
+            Console.WriteLine(Name + " lost " + damage + " health");
         }
         public void Recharge() 
         {
@@ -50,6 +52,7 @@ namespace TemTemArena
         public float Sparks()
         {
             Console.WriteLine("Ganki used Sparks! It did " + Damage + " Damage!");
+            //Loosehealth 
             return Damage * 2f;
         }
         public float WindBlade()
