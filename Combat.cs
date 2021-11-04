@@ -60,6 +60,7 @@ namespace TemTemArena
                 {
                     if (index > 0 && index <= abilities.Count)
                     {
+                        selectedAnAbility = true;
                         return abilities[index - 1];
                     }
                 }
