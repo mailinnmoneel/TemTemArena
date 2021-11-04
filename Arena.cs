@@ -22,7 +22,7 @@ namespace TemTemArena
                 ShowGameInfo();
                 string command = Console.ReadLine();
                 if (command == "exit") Stop();
-                else if (command == "nibble")
+                else if (command == "attack")
                     foreach (var TemTem in TemTemDex.TemTemListe.ActiveTemTems)
                     {
                         var damage = TemTem.Attack();
@@ -37,7 +37,6 @@ namespace TemTemArena
             {
                 if (TemTem.IsFainted) continue;
                 if (TemTem.IsNPC == IsNPC) continue;
-                Console.WriteLine("hallo");
                 TemTem.LooseHealt(damage);
             }
         }
@@ -51,7 +50,7 @@ namespace TemTemArena
             Console.WriteLine("************************");
             Console.WriteLine("Available commands are;");
             Console.WriteLine("Exit");
-            Console.WriteLine("Nibble");
+            Console.WriteLine("Attack");
             Console.WriteLine("************************");
             
         }
