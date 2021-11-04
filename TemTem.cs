@@ -24,22 +24,22 @@ namespace TemTemArena
             IsFainted = isFainted;
             IsNPC = isnpc;
         }
-        
+      
+        public float Attack()
+        {
+            Console.WriteLine(Name + " used Attack! It did " + Damage + " Damage!");
+            return Damage;
+        }
         public void LooseHealt(float damage)
         {
             Health = -damage;
             Console.WriteLine(Name + " lost " + damage);
         }
-
         public void Recharge()
         {
             Stamina += 50f;
             Console.WriteLine($"{Name} used Recharge! Stamina is now {Stamina}");
         }
 
-        public void Attack()
-        {
-            Console.WriteLine(Name + " used Attack! It did " + Damage + " Damage!");
-        }
     }
 }

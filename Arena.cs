@@ -25,20 +25,23 @@ namespace TemTemArena
                 else if (command == "nibble")
                     foreach (var TemTem in TemTemDex.TemTemListe.ActiveTemTems)
                     {
-                        TemTem.Attack();
-                        //TemTem.LooseHealt(float damage);
+                        var damage = TemTem.Attack();
+                        CauseDamage(damage, TemTem.IsNPC);
                     }
-
-                foreach (var TemTem in TemTemDex.TemTemListe.ActiveTemTems)
-                {
-                    if (TemTem.IsNPC)
-                    {
-                        Console.WriteLine(TemTem.Name + "s remaining Health is " + TemTem.Health);
-                    }
-                    else Console.WriteLine(TemTem.Name + "s remaining Health is " + TemTem.Health);
-                }
             }
         }
+
+        private void CauseDamage(float damage, bool IsNPC)
+        {
+            foreach (var TemTem in TemTemDex.TemTemListe.ActiveTemTems)
+            {
+                if (TemTem.IsFainted) continue;
+                if (TemTem.IsNPC == IsNPC) continue;
+                Console.WriteLine("hallo");
+                TemTem.LooseHealt(damage);
+            }
+        }
+
         public void Stop()
         {
             IsRunning = false;

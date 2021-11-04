@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TemTemArena
 {
-    class Tateru : ITemTem
+    class Tateru
     {
 
         public float Health { get; set; }
