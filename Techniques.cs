@@ -34,8 +34,8 @@ namespace TemTemArena
             {
                 case Ability.None  : return 0;
                 case Ability.Basic : return Basic(damage);
-                case Ability.Nibble: return Basic(damage);
-                case Ability.ChainLightning : return Basic(damage);
+                case Ability.Nibble: return Nibble(damage);
+                case Ability.ChainLightning : return ChainLightning(damage);
                 default: return Basic(damage);
             }
         }
