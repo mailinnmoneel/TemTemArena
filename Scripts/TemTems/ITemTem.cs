@@ -14,7 +14,7 @@ namespace TemTemArena
         float Stamina { get; set; }
         bool IsFainted { get; set; }
         bool IsNPC { get; set; }
-        void LooseHealt(float damage); 
+        void LooseHealth(float damage); 
         void Recharge();
         float Attack();
     }

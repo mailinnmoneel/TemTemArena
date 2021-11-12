@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TemTemArena.Scripts.Data;
+using TemTemArena.Scripts.Singletons;
 
 namespace TemTemArena
 {
@@ -20,6 +23,7 @@ namespace TemTemArena
             while (IsRunning)
             {
                 ShowGameInfo();
+
                 string command = Console.ReadLine();
                 if (command == "exit") Stop();
                 else if (command == "attack")
@@ -28,32 +32,27 @@ namespace TemTemArena
                         var damage = TemTem.Attack();
                         CauseDamage(damage, TemTem.IsNPC);
                     }
+
+                Console.Read();
+                //-- Force Gameloop to pause before next pass. Otherwise screen gets cleared of all info. Need a better method to handle this
             }
         }
 
-        private void CauseDamage(float damage, bool IsNPC)
+        private void CauseDamage(float damage, bool isNpc)
         {
             foreach (var TemTem in TemTemDex.TemTemListe.ActiveTemTems)
             {
                 if (TemTem.IsFainted) continue;
-                if (TemTem.IsNPC == IsNPC) continue;
-                TemTem.LooseHealt(damage);
+                if (TemTem.IsNPC == isNpc) continue;
+                TemTem.LooseHealth(damage);
             }
         }
 
-        public void Stop()
-        {
-            IsRunning = false;
-        }
+        public void Stop() => IsRunning = false;
+
         public void ShowGameInfo()
         {
-            Console.WriteLine("************************");
-            Console.WriteLine("Available commands are;");
-            Console.WriteLine("Exit");
-            Console.WriteLine("Attack");
-            Console.WriteLine("************************");
-            
+            Game.Manager.Renderer.AddMessage(Align.Left, Messages.AvailableCommands);
         }
-     
     }
 }

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TemTemArena.Scripts.Data;
+using TemTemArena.Scripts.GUI;
+using TemTemArena.Scripts.Singletons;
 
 namespace TemTemArena
 {
@@ -45,18 +48,22 @@ namespace TemTemArena
                 damage = Techniques.Use(Ability.Basic, Damage);
             }
 
-            Console.WriteLine(Name + " used "+ ability  + " It did " + damage + " Damage!");
+            var message = $"{Name} used {ability}. It did {damage} damage!";
+            Game.Manager.Renderer.AddMessage(Align.Left, message);
             return damage;
         }
-        public void LooseHealt(float damage)
+        public void LooseHealth(float damage)
         {
             Health = -damage;
-            Console.WriteLine(Name + " lost " + damage + " health");
+
+            var message = $"{Name} lost {damage} health";
+            Game.Manager.Renderer.AddMessage(Align.Left, message);
         }
         public void Recharge()
         {
             Stamina += 50f;
-            Console.WriteLine($"{Name} used Recharge! Stamina is now {Stamina}");
+            var message = $"{Name} used Recharge! Stamina is now {Stamina}";
+            Game.Manager.Renderer.AddMessage(Align.Left, message);
         }
 
     }
