@@ -20,7 +20,6 @@ namespace TemTemArena
             }
 
             bool ChooseAbility = false;
-
             while (!ChooseAbility)
             {
                 Console.WriteLine("Available attacks actions are:");
@@ -34,7 +33,6 @@ namespace TemTemArena
                 {
                     if (index > 0 && index <= abilities.Count)
                     {
-                        ChooseAbility = true;
                         return abilities[index - 1];
                     }
                 }

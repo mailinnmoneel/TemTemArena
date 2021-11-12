@@ -42,7 +42,6 @@ namespace TemTemArena
 
         static float Basic(float damage)
         {
-            
             return damage;
         }
 

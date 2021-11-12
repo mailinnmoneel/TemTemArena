@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TemTemArena 
 { 
+    [Obsolete("TemTem.cs brukes i stedet")]
     class Ganki
     {
         public float Health { get; set; }
