@@ -21,5 +21,14 @@ namespace TemTemArena.Scripts.Data
             "Attack",
             "************************",
         };
+
+        public static string[] AvailableAttacks =
+        {
+            "************************",
+            "Available attacks are are;",
+            "Nibble",
+            "",
+            "************************",
+        };
     }
 }

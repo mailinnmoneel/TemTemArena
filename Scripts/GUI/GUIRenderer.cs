@@ -21,7 +21,9 @@ namespace TemTemArena.Scripts.GUI
         [DllImport("kernel32.dll", SetLastError = true)]
         public static extern IntPtr GetStdHandle(int handle);
 
-        public GUIRenderer()
+        private static Vector2 _currentLogPosition = new Vector2(0, 0);
+
+        public GUIRenderer(bool useGUI)
         {
             Console.ForegroundColor = ConsoleColor.Black;
             Console.SetBufferSize(ScreenWidth +20, ScreenHeight +20);
@@ -38,7 +40,7 @@ namespace TemTemArena.Scripts.GUI
             {
                 var color = Colors.GetColor(backgroundColor);
                 Console.SetCursorPosition(x, y);
-                Console.Write("\x1b[48;5;" + color + "m ");
+                Console.Write("\x1b[48;5;" + color + "m "); //Kommando for å sette farge + spesifikk farge + hva som skal skrives
             }
         }
 
@@ -66,7 +68,6 @@ namespace TemTemArena.Scripts.GUI
             DrawGUIAreas();
 
             PrintAllColors();
-            Console.SetCursorPosition(0, 5);
         }
 
         void DrawGUIAreas()
@@ -135,7 +136,8 @@ namespace TemTemArena.Scripts.GUI
         }
         static void DrawMessage(Align alignment, string[] messages, int col)
         {
-            Vector2 position = ScreenData.InfoAreaStart + Anchor[alignment] + BorderWidth;
+            var messageLength = messages.Length;
+            Vector2 position = InfoAreaStart + Anchor[alignment] + BorderWidth + _currentLogPosition;
 
             foreach (var message in messages)
             {
@@ -151,6 +153,8 @@ namespace TemTemArena.Scripts.GUI
 
                 position.Y++;
             }
+
+            _currentLogPosition.Y += messageLength + 1;
         }
 
         [Obsolete("Used to offset the messages with the Align parameter. Should instead add messages to a message class that the GUI reads from to decide position")]

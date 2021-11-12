@@ -11,8 +11,8 @@ namespace TemTemArena
     
      //Singleton
      public static TemTemDex TemTemListe { get; } = new TemTemDex();
-     private List<ITemTem> _temTems;
-     public List<ITemTem> ActiveTemTems => _temTems ??= new List<ITemTem>(); 
+     private List<TemTem> _temTems;
+     public List<TemTem> ActiveTemTems => _temTems ??= new List<TemTem>(); 
         
     }
 }

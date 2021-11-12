@@ -30,7 +30,7 @@ namespace TemTemArena
                     foreach (var TemTem in TemTemDex.TemTemListe.ActiveTemTems)
                     {
                         var damage = TemTem.Attack();
-                        CauseDamage(damage, TemTem.IsNPC);
+                        CauseDamage(damage);
                     }
 
                 Console.Read();
@@ -38,12 +38,11 @@ namespace TemTemArena
             }
         }
 
-        private void CauseDamage(float damage, bool isNpc)
+        private void CauseDamage(float damage)
         {
             foreach (var TemTem in TemTemDex.TemTemListe.ActiveTemTems)
             {
                 if (TemTem.IsFainted) continue;
-                if (TemTem.IsNPC == isNpc) continue;
                 TemTem.LooseHealth(damage);
             }
         }

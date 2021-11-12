@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TemTemArena.Scripts.Data;
+using TemTemArena.Scripts.Singletons;
 
 namespace TemTemArena
 {
@@ -22,9 +24,17 @@ namespace TemTemArena
             bool ChooseAbility = false;
             while (!ChooseAbility)
             {
-                Console.WriteLine("Available attacks actions are:");
-                Console.WriteLine(availableabilities);
-                Console.WriteLine("Choose ability 1, 2 or 3");
+                var messages = new string[3];
+                messages[0] = "Available attacks actions are:";
+                messages[1] = availableabilities;
+                messages[2] = "Choose ability 1, 2 or 3";
+                Game.Manager.Renderer.AddMessage(Align.Left, messages);
+
+                //Console.WriteLine("Available attacks actions are:");
+                //Console.WriteLine(availableabilities);
+                //Console.WriteLine("Choose ability 1, 2 or 3");
+
+
                 var selectedAbility = Console.ReadLine();
 
                 var success = Int32.TryParse(selectedAbility, out int index);
