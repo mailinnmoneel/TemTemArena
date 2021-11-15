@@ -17,11 +17,9 @@ namespace TemTemArena.Scripts.TemTems
         }
         public override float Attack()
         {
-            var damage = 0;
             var ability = PickTechnique();
 
-            //damage = Techniques.Use(ability, Damage);
-            //damage = Techniques.Use(Ability.Basic, Damage);
+            var damage = Techniques.Use(ability, Damage);
 
             var message = $"{Name} used {ability}. It did {damage} damage!";
             GUI.GUI.WriteLine(EntryType.Combat, message, true);

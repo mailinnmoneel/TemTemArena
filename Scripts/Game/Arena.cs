@@ -27,10 +27,14 @@ namespace TemTemArena
                 ShowGameInfo();
 
                 string command = GUI.ReadLine();
-                if (command == "exit") Stop();
-                else if (command == "target")
+                if (command == "exit")
                 {
-                    var target = ChooseTarget();
+                    Stop();
+                    continue;
+                }
+                if (command == "target")
+                {
+                    var target = ChooseTarget(); //fikse denne før vi går videre
 
                 }
 

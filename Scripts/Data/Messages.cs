@@ -18,9 +18,10 @@ namespace TemTemArena.Scripts.Data
             "************************",
             "Available commands are;",
             "Exit",
-            "Attack",
+            "Target",
             "************************",
         };
+
 
         public static string[] GameHeader =
         {

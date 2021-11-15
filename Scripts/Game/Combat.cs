@@ -12,11 +12,12 @@ namespace TemTemArena
 {
     public class Combat
     {
-        public static void ChooseTarget() //Ops
+        public static void ChooseTarget() //Funker ikke
         {
             var index = 0;
-            string[] AvailableTargets = new string[2];
-            foreach (INPCTemTem npc in TemTemDex.TemTemListe.ActiveTemTems)
+            string[] AvailableTargets = new string[20];
+            //Det er en bug med foreach loopen 
+            foreach (INPCTemTem npc in TemTemDex.TemTemListe.ActiveTemTems) //Skal loope igjennom NPC og printe navnene til konsollen
             {
                 AvailableTargets[index] = npc.Name;
                 index++;
