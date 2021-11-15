@@ -62,7 +62,7 @@ namespace TemTemArena.Scripts.GUI
 
         private void AddCombatEntry(string[] messages)
         {
-            if (_combat.Count > 3) _combat = new List<string[]>();
+            if (_combat.Count > 9) _combat = new List<string[]>();
             _combat.Add(messages);
         }
         public string ReadLine()

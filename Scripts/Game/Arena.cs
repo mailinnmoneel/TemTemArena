@@ -25,7 +25,7 @@ namespace TemTemArena
             {
                 ShowGameInfo();
 
-                string command = Console.ReadLine();
+                string command = GUI.ReadLine();
                 if (command == "exit") Stop();
                 else if (command == "attack")
                     foreach (var TemTem in TemTemDex.TemTemListe.ActiveTemTems)
@@ -33,9 +33,6 @@ namespace TemTemArena
                         var damage = TemTem.Attack();
                         CauseDamage(damage);
                     }
-
-                Console.Read();
-                //-- Force Gameloop to pause before next pass. Otherwise screen gets cleared of all info. Need a better method to handle this
             }
         }
 
@@ -53,7 +50,6 @@ namespace TemTemArena
         public void ShowGameInfo()
         {
             GUI.WriteLine(EntryType.Command, Messages.AvailableCommands);
-            GUI.Refresh();
         }
     }
 }

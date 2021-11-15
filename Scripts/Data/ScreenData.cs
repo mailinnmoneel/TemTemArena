@@ -73,8 +73,8 @@ namespace TemTemArena.Scripts.Data
         public static Vector2 InventoryEnd   = new Vector2(148 + OffsetX, 46 + OffsetY);
 
         public static Vector2 CLogLeftStart  = new Vector2(36  + OffsetX, 7  + OffsetY);
-        public static Vector2 CLogLeftEnd    = new Vector2(64  + OffsetX, 16 + OffsetY);
-        public static Vector2 CLogRightStart = new Vector2(120 + OffsetX, 7  + OffsetY);
+        public static Vector2 CLogLeftEnd    = new Vector2(90  + OffsetX, 16 + OffsetY);
+        public static Vector2 CLogRightStart = new Vector2(90 + OffsetX, 7  + OffsetY);
         public static Vector2 CLogRightEnd   = new Vector2(148 + OffsetX, 16 + OffsetY);
 
         public static Vector2 InputPosition  = new Vector2(InputAreaStart.X + BorderWidth.X + 1, InputAreaStart.Y + BorderWidth.Y + 1);

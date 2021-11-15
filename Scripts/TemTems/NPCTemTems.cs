@@ -17,10 +17,10 @@ namespace TemTemArena.Scripts.TemTems
         }
         public override float Attack()
         {
-            float damage = 0;
+            //float damage = 0;
             Ability ability = ChooseAITechnique();
 
-            //damage = Techniques.Use(ability, Damage);
+            var damage = Techniques.Use(ability, Damage);
 
             //damage = Techniques.Use(Ability.Basic, Damage);
 

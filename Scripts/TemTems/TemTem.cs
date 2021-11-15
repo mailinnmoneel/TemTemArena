@@ -9,6 +9,7 @@ using TemTemArena.Scripts.Singletons;
 
 namespace TemTemArena
 {
+    //Hovedklassen som PLayer og NPC arver ifra
     public abstract class TemTem
     {
         public string Name { get; set; }
@@ -26,7 +27,7 @@ namespace TemTemArena
             Damage = damage;
             Stamina = stamina;
             IsFainted = isFainted;
-            AbilityNormal.Add(Ability.Basic);
+            AbilityNormal.Add(Ability.Basic); //Vi vil endre på dette, Burde ligge et annet sted
             AbilityNormal.Add(Ability.Nibble);
             AbilityNormal.Add(Ability.HeavyBlow);
         }
@@ -44,10 +45,11 @@ namespace TemTemArena
             GUI.WriteLine(EntryType.Combat, message, true);
         }
 
-        public void Recharge()
+        //Hvis stamina er 0 så mister de HP
+        public void Recharge() //Ikke i bruk enda, kan brukes hvis TemTem står over en tur, autoregen stamina ved rest
         {
-            Stamina += 50f;
-            var message = $"{Name} used Recharge! Stamina is now {Stamina}";
+            Stamina += 10f;
+            var message = $"{Name} took a rest this turn. Stamina is now {Stamina}";
             GUI.WriteLine(EntryType.Combat, message, true);
 
         }

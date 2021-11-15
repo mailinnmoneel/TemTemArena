@@ -28,7 +28,7 @@ namespace TemTemArena
                     string[] message = GUI.CreateMessage(availableabilities);
                     GUI.WriteLine(EntryType.Command, message, true);
 
-                    var selectedAbility = Console.ReadLine();
+                    var selectedAbility = GUI.ReadLine();
 
                     var success = Int32.TryParse(selectedAbility, out int index);
 

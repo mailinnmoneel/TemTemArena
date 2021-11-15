@@ -19,7 +19,7 @@ namespace TemTemArena
             Game.Manager.EventLog = new EventLog();
             Game.Manager.ScreenBuffer = new ScreenBuffer();
             Game.Manager.Renderer = new GUIRenderer();
-            Game.Manager.Renderer.Preview();
+            //Game.Manager.Renderer.Preview();
 
             GUI.WriteLine(EntryType.Header, Messages.GameHeader);
             GUI.Refresh();
@@ -35,11 +35,11 @@ namespace TemTemArena
 
             #region CreateTemTems
             TemTemDex.TemTemListe.ActiveTemTems.Add(new Player("Tateru", 79f, 78f, 85f, false)); //Neutral
-            TemTemDex.TemTemListe.ActiveTemTems.Add(new Player("Nessla", 50f, 76f, 58f, false)); //Electric+ Water
-            TemTemDex.TemTemListe.ActiveTemTems.Add(new Player("Deendre", 75f, 48f, 42f, false)); //Neutral
-            TemTemDex.TemTemListe.ActiveTemTems.Add(new NPCTemTem("Momo", 75f, 46f, 64f, false)); //Normal
+            //TemTemDex.TemTemListe.ActiveTemTems.Add(new Player("Nessla", 50f, 76f, 58f, false)); //Electric+ Water
+            //TemTemDex.TemTemListe.ActiveTemTems.Add(new Player("Deendre", 75f, 48f, 42f, false)); //Neutral
+            //TemTemDex.TemTemListe.ActiveTemTems.Add(new NPCTemTem("Momo", 75f, 46f, 64f, false)); //Normal
             TemTemDex.TemTemListe.ActiveTemTems.Add(new NPCTemTem("Ganki", 38f, 57f, 46f, false)); //Electriv+Wind
-            TemTemDex.TemTemListe.ActiveTemTems.Add(new NPCTemTem("Oceara", 64f, 54f, 42f, false)); //Water
+            //TemTemDex.TemTemListe.ActiveTemTems.Add(new NPCTemTem("Oceara", 64f, 54f, 42f, false)); //Water
             #endregion
 
             arena.TemTemBattle();
