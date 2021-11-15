@@ -34,13 +34,13 @@ namespace TemTemArena.Scripts.GUI
         {
             GUI.PushText();
             DrawText();
-            var i = 0;
         }
         void DrawText()
         {
             var text = GUI.Text;
             Console.ForegroundColor = HeaderTextColor;
             int y = 0, x = 0;
+
             foreach (var cell in text)
             {
                 if (cell != null)
@@ -59,26 +59,19 @@ namespace TemTemArena.Scripts.GUI
             Console.ForegroundColor = DefaultTextColor;
             GUI.MergeBuffer();
 
-            DrawElements();
-            
-            //GUI.ClearTextBuffer();
-
-            void DrawElements()
+            var buffer = GUI.Buffer;
+            Console.ForegroundColor = ConsoleColor.Black;
+            int y = 0, x = 0;
+            foreach (var cell in buffer)
             {
-                var buffer = GUI.Buffer;
-                Console.ForegroundColor = ConsoleColor.Black;
-                int y = 0, x = 0;
-                foreach (var cell in buffer)
+                if (cell != null)
                 {
-                    if (cell != null)
-                    {
-                        Console.SetCursorPosition(x, y);
-                        Console.Write(cell);
-                    }
-
-                    x = x < ScreenWidth - 1 ? x + 1 : 0;
-                    y = x == 0 ? y + 1 : y;
+                    Console.SetCursorPosition(x, y);
+                    Console.Write(cell);
                 }
+
+                x = x < ScreenWidth - 1 ? x + 1 : 0;
+                y = x == 0 ? y + 1 : y;
             }
         }
 

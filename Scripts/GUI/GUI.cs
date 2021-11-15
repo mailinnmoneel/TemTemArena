@@ -4,6 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading.Tasks.Dataflow;
 using TemTemArena.Scripts.Data;
 using TemTemArena.Scripts.Singletons;
 
@@ -11,65 +12,111 @@ namespace TemTemArena.Scripts.GUI
 {
     public static class GUI
     {
-        public static IEnumerable<string> Buffer => Game.Manager.ScreenBuffer.Buffer;
-        public static IEnumerable<string> Text => Game.Manager.ScreenBuffer.Text;
+        public static bool Initialized => GUIController.Instance.Initialized;
+        public static IEnumerable<string> Buffer => GUIController.Instance.ScreenBuffer.Buffer;
+        public static IEnumerable<string> Text => GUIController.Instance.ScreenBuffer.Text;
 
+        public static void CreateGUI()
+        {
+            if (GUIController.Instance.Initialized) return;
+            GUIController.Instance.Initialized  = true;
+
+            GUIController.Instance.EventLog     = new EventLog();
+            GUIController.Instance.ScreenBuffer = new ScreenBuffer();
+            GUIController.Instance.Renderer     = new GUIRenderer();
+        }
         public static void PushAndDrawText()
         {
-            Game.Manager.Renderer.PushAndDrawText();
+            GUIController.Instance.Renderer.PushAndDrawText();
         }
         public static void WriteLine(EntryType type, string message)
         {
-            Game.Manager.EventLog.AddEntry(type, message);
+            if (!GUI.Initialized)
+            {
+                WriteWithoutGUI(new string[] { message }, false);
+                return;
+            }
+
+            GUIController.Instance.EventLog.AddEntry(type, message);
         }
         public static void WriteLine(EntryType type, string message, bool update)
         {
-            Game.Manager.EventLog.AddEntry(type, message);
+            if (!GUI.Initialized)
+            {
+                WriteWithoutGUI(new string[] { message }, false);
+                return;
+            }
+
+            GUIController.Instance.EventLog.AddEntry(type, message);
             if (!update) return;
             Update();
             Draw();
         }
         public static void WriteLine(EntryType type, string[] messages, bool update)
         {
-            Game.Manager.EventLog.AddEntry(type, messages);
+            if (!GUI.Initialized)
+            {
+                WriteWithoutGUI(messages, true);
+                return;
+            }
+
+            GUIController.Instance.EventLog.AddEntry(type, messages);
             if (!update) return;
             Update();
             Draw();
         }
         public static void WriteLine(EntryType type, string[] messages)
         {
-            Game.Manager.EventLog.AddEntry(type, messages);
-            GUI.Refresh();
+            if (!GUI.Initialized)
+            {
+                WriteWithoutGUI(messages, true);
+                return;
+            }
+
+            GUIController.Instance.EventLog.AddEntry(type, messages);
+            Refresh();
         }
 
-        public static void Draw()
+        static void WriteWithoutGUI(string[] messages, bool usingStringArray)
         {
-            Game.Manager.Renderer.DrawScreenBuffer();
+            if (usingStringArray)
+            {
+                foreach (var message in messages)
+                {
+                    Console.WriteLine(message);
+                }
+            }
+            else
+            {
+                Console.Write(messages[0]);
+            }
         }
-
-        public static void Update()
+        public static string ReadLine()
         {
-            Game.Manager.ScreenBuffer.ReloadBuffer();
+            return !GUI.Initialized ? Console.ReadLine() : GUIController.Instance.EventLog.ReadLine();
         }
-
         public static void Refresh()
         {
             Update();
             Draw();
         }
-        public static void MergeBuffer()
+        public static void Update()
         {
-            Game.Manager.ScreenBuffer.PushBuffer();
+            GUIController.Instance.ScreenBuffer.ReloadBuffer();
+        }
+        public static void Draw()
+        {
+            GUIController.Instance.Renderer.DrawScreenBuffer();
         }
 
-        public static string ReadLine()
+        public static void MergeBuffer()
         {
-            return Game.Manager.EventLog.ReadLine();
+            GUIController.Instance.ScreenBuffer.PushBuffer();
         }
 
         public static void ReloadInputArea()
         {
-            Game.Manager.ScreenBuffer.LoadInputField();
+            GUIController.Instance.ScreenBuffer.LoadInputField();
             Refresh();
         }
 
@@ -86,17 +133,17 @@ namespace TemTemArena.Scripts.GUI
         public static void AddInputData(int x, int y, int length)
         {
             if (length <= 0) return;
-            Game.Manager.ScreenBuffer.AddInputData(x, y, length);
+            GUIController.Instance.ScreenBuffer.AddInputData(x, y, length);
         }
 
         public static void ClearTextBuffer()
         {
-            Game.Manager.ScreenBuffer.ClearTextBuffer();
+            GUIController.Instance.ScreenBuffer.ClearTextBuffer();
         }
 
         public static void PushText()
         {
-            Game.Manager.ScreenBuffer.PushText();
+            GUIController.Instance.ScreenBuffer.PushText();
         }
     }
 }

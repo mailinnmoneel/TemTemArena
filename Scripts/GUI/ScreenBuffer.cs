@@ -11,29 +11,34 @@ namespace TemTemArena.Scripts.GUI
 {
     class ScreenBuffer
     {
+        private List<GUIElement> _guiElements;
+
         private readonly string[] _screenBuffer;
         private readonly string[] _previousDrawcall;
         private string[] _inputData;
         private string[] _garbage;
         private string[] _consoleBuffer; //--The actual data drawn to screen
         private string[] _textBuffer;
-        private string[] _previousTextBuffer;
-        private string[] _consoleText;
         public IEnumerable<string> Buffer => _consoleBuffer;
         public IEnumerable<string> Text => _textBuffer;
 
         private readonly int BufferSize;
         public ScreenBuffer()
         {
+            _guiElements = new List<GUIElement>();
+
             BufferSize = ScreenWidth * ScreenHeight;
-            _consoleText        = new string[BufferSize];
-            _previousTextBuffer = new string[BufferSize];
             _garbage            = new string[BufferSize];
             _textBuffer         = new string[BufferSize];
             _inputData          = new string[BufferSize];
             _screenBuffer       = new string[BufferSize];
             _previousDrawcall   = new string[BufferSize];
             _consoleBuffer      = new string[BufferSize];
+        }
+
+        public void AddElement(GUIElement newElement)
+        {
+            _guiElements.Add(newElement);
         }
 
         public void ClearTextBuffer()
@@ -52,11 +57,8 @@ namespace TemTemArena.Scripts.GUI
             }
             _inputData = new string[BufferSize];
         }
-        public void AddInputData(int xGlobal, int yGlobal, int length)
+        public void AddInputData(int left, int top, int length)
         {
-            var left = xGlobal;
-            var top = yGlobal;
-
             int x = 0, y = 0;
             for (var i = 0; i <= length; i++)
             {
@@ -98,21 +100,74 @@ namespace TemTemArena.Scripts.GUI
         {
             LoadHeaderText();
         }
+        public void BuildBuffer()
+        {
+            foreach (var element in _guiElements)
+            {
+                var left = (int)element.Position.X;
+                var right = left + (int)element.Size.X;
+                var top = (int) element.Position.Y;
+                var bottom = top + (int)element.Size.Y;
+
+                LoadElementToBuffer(left, right, top, bottom, element.BackgroundColor, element.BorderColor);
+            }
+        }
+        private void LoadElementToBuffer(int left, int right, int top, int bottom, Color background, Color border)
+        {
+            for (var y = top; y < bottom; y++)
+            for (var x = left; x < right; x++)
+            {
+                if (x == left && y == top)                                               UpdateBufferCell(border, x, y, Border.TopLeft);
+                else if (x == right - 1 && y == top)                                     UpdateBufferCell(border, x, y, Border.TopRight);
+                else if (x == left && y == bottom - 1)                                   UpdateBufferCell(border, x, y, Border.BottomLeft);
+                else if (x == right - 1 && y == bottom - 1)                              UpdateBufferCell(border, x, y, Border.BottomRight);
+                else if ((x == left || x == right - 1) && (y != top && y != bottom - 1)) UpdateBufferCell(border, x, y, Border.Vertical);
+                else if ((x != left && x != right - 1) && (y == top || y == bottom - 1)) UpdateBufferCell(border, x, y, Border.Horizontal);
+                else UpdateBufferCell(background, x, y, Border.None);
+            }
+
+            void UpdateBufferCell(Color cellColor, int x, int y, Border type)
+            {
+                var symbol = BorderTypes[type];
+                var color = Colors.GetColor(cellColor);
+                _screenBuffer[y * ScreenWidth + x] = "\x1b[48;5;" + color + $"m{symbol}";
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //--Everything below here is a complete mess
         public void ReloadBuffer()
         {
             //--Garbage Collection
             RemoveBufferData();
+
             //--Draw Elements
             LoadCombatBackground();
             LoadCommandBackground();
             LoadCombatLogBackground();
+
             //--Draw Text
             LoadInputField();
             LoadInventory();
             LoadCommands();
             LoadCombat();
+
             //--Draw Header
             LoadHeaderArea();
+
             //--Fill Empty Cells
             LoadEmptyCells();
         }
@@ -221,7 +276,7 @@ namespace TemTemArena.Scripts.GUI
         //-- Load Text to Buffer
         private void LoadCombat()
         {
-            var commands = Game.Manager.EventLog.Combat;
+            var commands = GUIController.Instance.EventLog.Combat;
 
             var left   = (int)GameAreaStart.X + (int)BorderWidth.X + (int)TextPadding.X;
             var right  = (int)GameAreaEnd.X   - (int)BorderWidth.X - (int)TextPadding.X;
@@ -233,7 +288,7 @@ namespace TemTemArena.Scripts.GUI
 
         private void LoadCommands()
         {
-            var commands = Game.Manager.EventLog.Commands;
+            var commands = GUIController.Instance.EventLog.Commands;
 
             var left   = (int)InfoAreaStart.X  + (int) BorderWidth.X + (int)TextPadding.X;
             var right  = (int)InfoAreaEnd.X    - (int)BorderWidth.X  - (int)TextPadding.X;
@@ -276,7 +331,7 @@ namespace TemTemArena.Scripts.GUI
 
         public void LoadHeaderText()
         {
-            var commands = Game.Manager.EventLog.Header;
+            var commands = GUIController.Instance.EventLog.Header;
             LoadHeaderText(commands, Align.Center);
         }
         private void LoadHeaderArea()
@@ -292,11 +347,9 @@ namespace TemTemArena.Scripts.GUI
         {
             var length = 0;
             foreach (var messages in messageList)
-            {
                 foreach(var message in messages)
                     if (message.Length > length)
                         length = message.Length;
-            }
 
             var anchor = 0;
             if (alignment == Align.Center)
