@@ -10,8 +10,5 @@ namespace TemTemArena.Scripts.Singletons
     class Game
     {
         public static Game Manager { get; } = new Game();
-        public GUIRenderer Renderer { get; set; }
-        public ScreenBuffer ScreenBuffer { get; set; }
-        public EventLog EventLog { get; set; }
     }
 }

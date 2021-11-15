@@ -15,11 +15,8 @@ namespace TemTemArena
 
         static void Main(string[] args)
         {
-            #region Instantiate Controller Classes
-            Game.Manager.EventLog = new EventLog();
-            Game.Manager.ScreenBuffer = new ScreenBuffer();
-            Game.Manager.Renderer = new GUIRenderer();
-            Game.Manager.Renderer.Preview();
+            #region Create a new GUI for the application
+            GUI.CreateGUI();
 
             GUI.WriteLine(EntryType.Header, Messages.GameHeader);
             GUI.Refresh();
@@ -27,6 +24,11 @@ namespace TemTemArena
             #endregion
 
             Arena arena = new Arena(); //-- Main Game Controller
+
+            //Synergi 
+            //2vs2
+            //Noen skills (Chain lightning) Slår på 2 enemies av gangen 
+
 
             #region CreateTemTems
             TemTemDex.TemTemListe.ActiveTemTems.Add(new Player("Tateru", 79f, 78f, 85f, false)); //Neutral
@@ -38,8 +40,6 @@ namespace TemTemArena
             #endregion
 
             arena.TemTemBattle();
-
-        
         }
     }
 }

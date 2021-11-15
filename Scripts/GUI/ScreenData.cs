@@ -26,6 +26,12 @@ namespace TemTemArena.Scripts.Data
         Horizontal,
         Dithering2,
     }
+
+    public enum BorderStyle
+    {
+        None,
+        Regular,
+    }
     public static class ScreenData
     {
         public static readonly Dictionary<Align, Vector2> Anchor = new Dictionary<Align, Vector2>
