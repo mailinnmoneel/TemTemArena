@@ -41,13 +41,13 @@ namespace TemTemArena
             Health -= damage;
 
             var message = $"{Name} lost {damage} health";
-            Game.Manager.Renderer.AddMessage(Align.Left, message);
+            GUI.AddEntry(EntryType.Combat, message, true);
         }
         public void Recharge()
         {
             Stamina += 50f;
             var message = $"{Name} used Recharge! Stamina is now {Stamina}";
-            Game.Manager.Renderer.AddMessage(Align.Left, message);
+            GUI.AddEntry(EntryType.Combat, message, true);
         }
 
     }

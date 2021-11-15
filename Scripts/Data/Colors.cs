@@ -29,6 +29,7 @@ namespace TemTemArena.Scripts.Data
             {Color.ForestGreen, 10},
             {Color.DarkOrange, 202},
             {Color.DarkRed, 124},
+            {Color.LightSlateGray, 251},
             {Color.White, 255},
         };
     }

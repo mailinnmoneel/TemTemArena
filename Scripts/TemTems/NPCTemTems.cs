@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TemTemArena.Scripts.Data;
+using TemTemArena.Scripts.GUI;
 using TemTemArena.Scripts.Singletons;
 
 namespace TemTemArena.Scripts.TemTems
@@ -16,18 +17,15 @@ namespace TemTemArena.Scripts.TemTems
         }
         public override float Attack()
         {
-            var chosenTechnique = ChooseAITechnique();
-
             float damage = 0;
-            Ability ability = Ability.None;
+            Ability ability = ChooseAITechnique();
 
-            //ability = Combat.ChooseAbility(AbilityNormal);
             //damage = Techniques.Use(ability, Damage);
 
             //damage = Techniques.Use(Ability.Basic, Damage);
 
             var message = $"{Name} used {ability}. It did {damage} damage!";
-            Game.Manager.Renderer.AddMessage(Align.Left, message);
+            GUI.GUI.AddEntry(EntryType.Combat, message, true);
             return damage;
         }
     

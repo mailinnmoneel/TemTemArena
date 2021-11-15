@@ -8,12 +8,12 @@ namespace TemTemArena.Scripts.Data
 {
     public static class Messages
     {
-        public static string[] Welcome = 
+        public static string[] Welcome =
         {
             "Welcome to TemTem Arena!",
         };
 
-        public static string[] AvailableCommands = 
+        public static string[] AvailableCommands =
         {
             "************************",
             "Available commands are;",
@@ -22,13 +22,13 @@ namespace TemTemArena.Scripts.Data
             "************************",
         };
 
-        public static string[] AvailableAttacks =
+        public static string[] GameHeader =
         {
-            "************************",
-            "Available attacks are are;",
-            "Nibble",
-            "",
-            "************************",
+            " _____   _____   __  __     _____   _____   __  __        _      ____    _____   _   _      _",
+            "|_   _| | ____| |  \\/  |   |_   _| | ____| |  \\/  |      / \\    |  _ \\  | ____| | \\ | |    / \\",
+            "  | |   |  _|   | |\\/| |     | |   |  _|   | |\\/| |     / _ \\   | |_) | |  _|   |  \\| |   / _ \\  ",
+            "  | |   | |___  | |  | |     | |   | |___  | |  | |    / ___ \\  |  _ <  | |___  | |\\  |  / ___ \\ ",
+            "  |_|   |_____| |_|  |_|     |_|   |_____| |_|  |_|   /_/   \\_\\ |_| \\_\\ |_____| |_| \\_| /_/   \\_\\",
         };
     }
 }
