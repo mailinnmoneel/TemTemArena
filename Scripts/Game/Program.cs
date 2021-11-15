@@ -28,6 +28,11 @@ namespace TemTemArena
 
             Arena arena = new Arena(); //-- Main Game Controller
 
+            //Synergi 
+            //2vs2
+            //Noen skills (Chain lightning) Slår på 2 enemies av gangen 
+
+
             #region CreateTemTems
             TemTemDex.TemTemListe.ActiveTemTems.Add(new Player("Tateru", 79f, 78f, 85f, false)); //Neutral
             TemTemDex.TemTemListe.ActiveTemTems.Add(new Player("Nessla", 50f, 76f, 58f, false)); //Electric+ Water
