@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TemTemArena.Scripts.Data;
+using TemTemArena.Scripts.GUI;
 using TemTemArena.Scripts.Singletons;
 
 namespace TemTemArena
@@ -51,7 +52,8 @@ namespace TemTemArena
 
         public void ShowGameInfo()
         {
-            Game.Manager.Renderer.AddMessage(Align.Left, Messages.AvailableCommands);
+            GUI.AddEntry(EntryType.Command, Messages.AvailableCommands);
+            GUI.Refresh();
         }
     }
 }
