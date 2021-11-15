@@ -18,9 +18,7 @@ namespace TemTemArena
             #region Create a new GUI for the application
             //GUI.CreateGUI();
 
-            //GUI.WriteLine(EntryType.Header, Messages.GameHeader);
-            //GUI.Refresh();
-            //GUI.PushAndDrawText();
+            GUI.WriteLine(EntryType.Header, Messages.GameHeader);
             #endregion
 
             Arena arena = new Arena(); //-- Main Game Controller
