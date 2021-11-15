@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Numerics;
+using System.Reflection.Metadata.Ecma335;
 using System.Reflection.PortableExecutable;
 using System.Runtime.InteropServices;
 using TemTemArena.Scripts.Data;
@@ -24,19 +25,23 @@ namespace TemTemArena.Scripts.GUI
 
         public GUIRenderer()
         {
-            Console.ForegroundColor = ConsoleColor.Black;
-            Console.SetBufferSize(ScreenWidth + 20, ScreenHeight + 20);
+            Console.ForegroundColor = DefaultTextColor;
+            Console.CursorVisible = false;
+            Console.SetBufferSize(ScreenWidth +20, ScreenHeight +20);
             Console.SetWindowSize(ScreenWidth, ScreenHeight);
         }
-
-        public void DrawScreenBuffer()
+        public void PushAndDrawText()
         {
-            GUI.MergeBuffer();
-
-            var buffer = Game.Manager.ScreenBuffer.Buffer;
+            GUI.PushText();
+            DrawText();
+            var i = 0;
+        }
+        void DrawText()
+        {
+            var text = GUI.Text;
+            Console.ForegroundColor = HeaderTextColor;
             int y = 0, x = 0;
-
-            foreach (var cell in buffer)
+            foreach (var cell in text)
             {
                 if (cell != null)
                 {
@@ -44,8 +49,36 @@ namespace TemTemArena.Scripts.GUI
                     Console.Write(cell);
                 }
 
-                x = x < ScreenWidth ? x + 1 : 0;
+                x = x < ScreenWidth - 1 ? x + 1 : 0;
                 y = x == 0 ? y + 1 : y;
+            }
+        }
+
+        public void DrawScreenBuffer()
+        {
+            Console.ForegroundColor = DefaultTextColor;
+            GUI.MergeBuffer();
+
+            DrawElements();
+            
+            //GUI.ClearTextBuffer();
+
+            void DrawElements()
+            {
+                var buffer = GUI.Buffer;
+                Console.ForegroundColor = ConsoleColor.Black;
+                int y = 0, x = 0;
+                foreach (var cell in buffer)
+                {
+                    if (cell != null)
+                    {
+                        Console.SetCursorPosition(x, y);
+                        Console.Write(cell);
+                    }
+
+                    x = x < ScreenWidth - 1 ? x + 1 : 0;
+                    y = x == 0 ? y + 1 : y;
+                }
             }
         }
 
@@ -65,16 +98,16 @@ namespace TemTemArena.Scripts.GUI
             Console.BackgroundColor = ConsoleColor.Black;
             for (var i = 0; i < 256; i++)
             {
-                if (i % (ScreenHeight - 2) == 0) { position.X += 10; position.Y = 0; }
+                if (i % (ScreenHeight-2) == 0) { position.X += 10; position.Y = 0; }
 
-                Console.SetCursorPosition((int)position.X, (int)position.Y + i % (ScreenHeight - 2));
+                Console.SetCursorPosition((int)position.X, (int)position.Y + i % (ScreenHeight-2));
                 Console.WriteLine($"{i}: {(char)i}");
             }
 
             Console.ForegroundColor = ConsoleColor.Black;
             Console.BackgroundColor = ConsoleColor.Yellow;
 
-            Console.SetCursorPosition((int)(position.X), ScreenHeight - 3);
+            Console.SetCursorPosition((int)(position.X), ScreenHeight-3);
             var message = "Press any key to begin...";
             Console.WriteLine(message);
             Console.SetCursorPosition((int)(position.X + message.Length), ScreenHeight - 3);
@@ -82,7 +115,7 @@ namespace TemTemArena.Scripts.GUI
 
         public void PreviewColors()
         {
-            Console.SetCursorPosition(0, ScreenHeight - 2);
+            Console.SetCursorPosition(0, ScreenHeight-2);
             var handle = GetStdHandle(-11);
             GetConsoleMode(handle, out var mode);
             SetConsoleMode(handle, mode | 0x4);

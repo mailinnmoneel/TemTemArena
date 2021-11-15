@@ -11,7 +11,7 @@ namespace TemTemArena
 {
     public abstract class TemTem
     {
-        public string Name { get; set; } 
+        public string Name { get; set; }
         public float Health { get; set; }
         public float Damage { get; set; }
         public float Stamina { get; set; }
@@ -26,29 +26,30 @@ namespace TemTemArena
             Damage = damage;
             Stamina = stamina;
             IsFainted = isFainted;
-            AbilityNormal.Add(Ability.Basic); 
-            AbilityNormal.Add(Ability.Nibble); 
-            AbilityNormal.Add(Ability.HeavyBlow); 
+            AbilityNormal.Add(Ability.Basic);
+            AbilityNormal.Add(Ability.Nibble);
+            AbilityNormal.Add(Ability.HeavyBlow);
         }
 
         public virtual float Attack()
         {
             return 0;
         }
-        
+
         public void LooseHealth(float damage)
         {
             Health -= damage;
 
             var message = $"{Name} lost {damage} health";
-            GUI.AddEntry(EntryType.Combat, message, true);
+            GUI.WriteLine(EntryType.Combat, message, true);
         }
+
         public void Recharge()
         {
             Stamina += 50f;
             var message = $"{Name} used Recharge! Stamina is now {Stamina}";
-            GUI.AddEntry(EntryType.Combat, message, true);
-        }
+            GUI.WriteLine(EntryType.Combat, message, true);
 
+        }
     }
 }

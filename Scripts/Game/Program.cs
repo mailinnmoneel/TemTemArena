@@ -12,6 +12,7 @@ namespace TemTemArena
     {
         //-- ASCII SYMBOLS
         //-- https://www.alt-codes.net/
+
         static void Main(string[] args)
         {
             #region Instantiate Controller Classes
@@ -20,8 +21,9 @@ namespace TemTemArena
             Game.Manager.Renderer = new GUIRenderer();
             Game.Manager.Renderer.Preview();
 
-            GUI.AddEntry(EntryType.Header, Messages.GameHeader);
+            GUI.WriteLine(EntryType.Header, Messages.GameHeader);
             GUI.Refresh();
+            GUI.PushAndDrawText();
             #endregion
 
             Arena arena = new Arena(); //-- Main Game Controller

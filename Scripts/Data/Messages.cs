@@ -8,12 +8,12 @@ namespace TemTemArena.Scripts.Data
 {
     public static class Messages
     {
-        public static string[] Welcome =
+        public static string[] Welcome = 
         {
             "Welcome to TemTem Arena!",
         };
 
-        public static string[] AvailableCommands =
+        public static string[] AvailableCommands = 
         {
             "************************",
             "Available commands are;",

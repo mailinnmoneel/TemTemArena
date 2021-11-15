@@ -26,7 +26,7 @@ namespace TemTemArena
                 while (!ChooseAbility)
                 {
                     string[] message = GUI.CreateMessage(availableabilities);
-                    GUI.AddEntry(EntryType.Command, message, true);
+                    GUI.WriteLine(EntryType.Command, message, true);
 
                     var selectedAbility = Console.ReadLine();
 

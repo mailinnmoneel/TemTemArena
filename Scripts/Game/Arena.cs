@@ -52,7 +52,7 @@ namespace TemTemArena
 
         public void ShowGameInfo()
         {
-            GUI.AddEntry(EntryType.Command, Messages.AvailableCommands);
+            GUI.WriteLine(EntryType.Command, Messages.AvailableCommands);
             GUI.Refresh();
         }
     }

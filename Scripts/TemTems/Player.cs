@@ -24,7 +24,7 @@ namespace TemTemArena.Scripts.TemTems
             //damage = Techniques.Use(Ability.Basic, Damage);
 
             var message = $"{Name} used {ability}. It did {damage} damage!";
-            GUI.GUI.AddEntry(EntryType.Combat, message, true);
+            GUI.GUI.WriteLine(EntryType.Combat, message, true);
             return damage;
         }
 
