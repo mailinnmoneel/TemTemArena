@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using TemTemArena.Scripts.Data;
 using TemTemArena.Scripts.GUI;
 using TemTemArena.Scripts.Singletons;
+using TemTemArena.Scripts.TemTems;
 
 namespace TemTemArena
 {
@@ -25,18 +26,43 @@ namespace TemTemArena
             {
                 ShowGameInfo();
 
-                string command = Console.ReadLine();
+                string command = GUI.ReadLine();
                 if (command == "exit") Stop();
-                else if (command == "attack")
-                    foreach (var TemTem in TemTemDex.TemTemListe.ActiveTemTems)
+                else if (command == "target")
+                {
+                    var target = ChooseTarget();
+
+                }
+
+                //else if (command == "attack")
+
+                foreach (var TemTem in TemTemDex.TemTemListe.ActiveTemTems)
+                {
+                    if (TemTem.Name == "Tateru")
+                    {
+                        var damage = TemTem.Attack();
+                        CauseDamage(damage);
+
+                    }
+                    else if (TemTem.Name == "Nessla")
                     {
                         var damage = TemTem.Attack();
                         CauseDamage(damage);
                     }
-
-                Console.Read();
-                //-- Force Gameloop to pause before next pass. Otherwise screen gets cleared of all info. Need a better method to handle this
+                }
             }
+        }
+
+        private INPCTemTem ChooseTarget()
+        {
+            Combat.ChooseTarget(); //Printer ut navn på npc du kan velge mellom å attacker
+            var target = GUI.ReadLine(); //Tar inn kommando 
+            foreach (INPCTemTem npc in TemTemDex.TemTemListe.ActiveTemTems) //Looper igjennom npcène
+            {
+                if (npc.Name == target) return npc;
+            }
+
+            return null;
         }
 
         private void CauseDamage(float damage)
@@ -53,7 +79,6 @@ namespace TemTemArena
         public void ShowGameInfo()
         {
             GUI.WriteLine(EntryType.Command, Messages.AvailableCommands);
-            GUI.Refresh();
         }
     }
 }
