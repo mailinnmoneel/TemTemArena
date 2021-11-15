@@ -23,6 +23,7 @@ namespace TemTemArena
             {Ability.Basic, "Basic Attack" },
             {Ability.Nibble, "Nibble" },
             {Ability.HeavyBlow, "Heavy Blow" },
+            {Ability.ChainLightning, "Chain Lightning" },
         };
 
         public static float Use(Ability ability, float damage)

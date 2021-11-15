@@ -30,6 +30,7 @@ namespace TemTemArena
             AbilityNormal.Add(Ability.Basic); //Vi vil endre på dette, Burde ligge et annet sted
             AbilityNormal.Add(Ability.Nibble);
             AbilityNormal.Add(Ability.HeavyBlow);
+            AbilityNormal.Add(Ability.ChainLightning);
         }
 
         public virtual float Attack()

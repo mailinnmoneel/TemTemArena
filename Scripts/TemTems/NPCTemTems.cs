@@ -17,12 +17,9 @@ namespace TemTemArena.Scripts.TemTems
         }
         public override float Attack()
         {
-            //float damage = 0;
             Ability ability = ChooseAITechnique();
 
             var damage = Techniques.Use(ability, Damage);
-
-            //damage = Techniques.Use(Ability.Basic, Damage);
 
             var message = $"{Name} used {ability}. It did {damage} damage!";
             GUI.GUI.WriteLine(EntryType.Combat, message, true);
@@ -35,6 +32,7 @@ namespace TemTemArena.Scripts.TemTems
             abilities.Add(Ability.Basic);
             abilities.Add(Ability.Nibble);
             abilities.Add(Ability.HeavyBlow);
+            abilities.Add(Ability.ChainLightning);
 
             var numberOfAbilities = abilities.Count;
             Random random = new Random();

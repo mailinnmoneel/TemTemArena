@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TemTemArena
+namespace TemTemArena.Scripts.Abilities
 {
-    class ChainLightning : Techniques, IElectric
+    class HeavyBlow : Techniques, IBasic
     {
-        static float ChainLightnings(float damage)
+        static float HeavyBlows(float damage)
         {
             return damage;
-            //skal gjøre mest skade på første target
+
         }
     }
 }

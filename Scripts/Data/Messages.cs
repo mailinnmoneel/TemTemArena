@@ -18,7 +18,17 @@ namespace TemTemArena.Scripts.Data
             "************************",
             "Available commands are;",
             "Exit",
+            "Target",
             "Attack",
+            "************************",
+        };
+
+        public static string[] AvailableTargets =
+        {
+            "************************",
+            "Available targets are;",
+            "Momo",
+            "Ganki",
             "************************",
         };
 

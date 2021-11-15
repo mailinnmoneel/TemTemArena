@@ -6,11 +6,24 @@ using System.Threading.Tasks;
 using TemTemArena.Scripts.Data;
 using TemTemArena.Scripts.GUI;
 using TemTemArena.Scripts.Singletons;
+using TemTemArena.Scripts.TemTems;
 
 namespace TemTemArena
 {
     public class Combat
     {
+        public static void ChooseTarget() //Ops
+        {
+            var index = 0;
+            string[] AvailableTargets = new string[2];
+            foreach ( INPCTemTem npc in TemTemDex.TemTemListe.ActiveTemTems)
+            {
+                AvailableTargets[index] = npc.Name;
+                index++;
+            }
+            GUI.WriteLine(EntryType.Command, AvailableTargets);
+        }
+
             public static Ability ChooseAbility(List<Ability> abilities)
             {
                 string[] availableabilities = new string[abilities.Count];
