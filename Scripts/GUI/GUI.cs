@@ -102,8 +102,7 @@ namespace TemTemArena.Scripts.GUI
         }
         public static void Update()
         {
-            GUIController.Instance.ScreenBuffer.BuildBuffer();
-            //GUIController.Instance.ScreenBuffer.ReloadBuffer();
+            GUIController.Instance.ScreenBuffer.ReloadBuffer();
         }
         public static void Draw()
         {

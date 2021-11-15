@@ -53,7 +53,6 @@ namespace TemTemArena
         public void ShowGameInfo()
         {
             GUI.WriteLine(EntryType.Command, Messages.AvailableCommands);
-            GUI.Refresh();
         }
     }
 }
