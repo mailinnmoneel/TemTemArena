@@ -28,7 +28,7 @@ namespace TemTemArena.Scripts.TemTems
 
         private Ability PickTechnique()
         {
-            return Combat.ChooseAbility(AbilityNormal);
+            return Combat.ChooseAbility(AbilityList);
         }
     }
 }

@@ -12,18 +12,15 @@ namespace TemTemArena
 {
     public class Combat
     {
-        public static void ChooseTarget() //Funker ikke
+        public void CauseDamage(float damage)
         {
-            var index = 0;
-            string[] AvailableTargets = new string[20];
-            //Det er en bug med foreach loopen 
-            foreach (INPCTemTem npc in TemTemDex.TemTemListe.ActiveTemTems) //Skal loope igjennom NPC og printe navnene til konsollen
+            foreach (var TemTem in TemTemDex.TemTemListe.ActiveTemTems)
             {
-                AvailableTargets[index] = npc.Name;
-                index++;
+                if (TemTem.IsFainted) continue;
+                TemTem.LooseHealth(damage);
             }
-            GUI.WriteLine(EntryType.Command, AvailableTargets);
         }
+
         public static Ability ChooseAbility(List<Ability> abilities)
             {
                 string[] availableabilities = new string[abilities.Count];
