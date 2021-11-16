@@ -16,10 +16,14 @@ namespace TemTemArena
 
         static void Main(string[] args)
         {
+
             #region Instantiate Controller Classes
 
             //GUI.CreateGUI();
+            #endregion
 
+            #region Graphical User Interface
+            GUI.UseGUI();
             GUI.WriteLine(EntryType.Header, Messages.GameHeader);
 
             #endregion
