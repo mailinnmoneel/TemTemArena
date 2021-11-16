@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TemTemArena.Scripts.TemTems
+namespace TemTemArena.Scripts.Game
 {
-    interface INPCTemTem
+    class Command
     {
-        public string Name { get; set; }
     }
 }

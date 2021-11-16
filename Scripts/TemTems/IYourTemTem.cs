@@ -8,5 +8,6 @@ namespace TemTemArena.Scripts.TemTems
 {
     interface IYourTemTem
     {
+        public string Name { get; set; }
     }
 }

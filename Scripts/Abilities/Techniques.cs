@@ -10,12 +10,10 @@ namespace TemTemArena
     public enum Ability
     {
         None,
-        //Normal
         Basic,
         Nibble,
         Scratch,
         HeavyBlow,
-        //Electrick
         ChainLightning,
     }
 
