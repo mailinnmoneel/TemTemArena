@@ -8,6 +8,27 @@ using System.Threading.Tasks.Dataflow;
 using TemTemArena.Scripts.Data;
 using TemTemArena.Scripts.Singletons;
 
+/*
+ *  HOW TO USE
+ *
+ *  To use the GUI-Interface, instantiate a GUI using
+ *  GUI.UseGUI();
+ *  
+ *  To draw to and get input from the GUI
+ *  use the follow two methods:
+ *  
+ *  -- GUI.WriteLine(EntryType, string);
+ *  where EntryType specifies where on the GUI the message will appear.
+ *  the message can be passed in as either a string or if multiple lines are needed, a string array.
+ *
+ *  -- GUI.ReadLine();
+ *
+ *  If not GUI has been instantiated, these two methods will behave like
+ *  Console.WriteLine(); and Console.ReadLine();
+ *
+ *  Further customization is done by adjusting properties in ScreenData.cs
+ *
+ */
 namespace TemTemArena.Scripts.GUI
 {
     public static class GUI
@@ -16,7 +37,7 @@ namespace TemTemArena.Scripts.GUI
         public static IEnumerable<string> Buffer => GUIController.Instance.ScreenBuffer.Buffer;
         public static IEnumerable<string> Text => GUIController.Instance.ScreenBuffer.Text;
 
-        public static void CreateGUI()
+        public static void UseGUI()
         {
             if (GUIController.Instance.Initialized) return;
             GUIController.Instance.Initialized  = true;
