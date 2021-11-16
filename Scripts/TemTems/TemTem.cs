@@ -17,21 +17,21 @@ namespace TemTemArena
         public float Stamina { get; set; }
         public bool IsFainted { get; set; }
 
-        protected List<Ability> AbilityNormal = new List<Ability>();
+        protected List<Ability> AbilityList = new List<Ability>();
 
-        public TemTem(string name, float health, float damage, float stamina, bool isFainted)
+        protected TemTem(string name, float health, float damage, float stamina, bool isFainted)
         {
             Name = name;
             Health = health;
             Damage = damage;
             Stamina = stamina;
             IsFainted = isFainted;
-            AbilityNormal.Add(Ability.Basic);
-            AbilityNormal.Add(Ability.Nibble);
-            AbilityNormal.Add(Ability.HeavyBlow);
+            AbilityList.Add(Ability.Basic);
+            AbilityList.Add(Ability.Nibble);
+            AbilityList.Add(Ability.HeavyBlow);
         }
 
-        public virtual float Attack()
+        public virtual float Attack()//?
         {
             return 0;
         }
@@ -44,7 +44,7 @@ namespace TemTemArena
             GUI.WriteLine(EntryType.Combat, message, true);
         }
 
-        public void Recharge()
+        public void Recharge() //Ikke i bruk enda
         {
             Stamina += 50f;
             var message = $"{Name} used Recharge! Stamina is now {Stamina}";

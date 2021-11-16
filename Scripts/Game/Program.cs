@@ -53,9 +53,8 @@ namespace TemTemArena
 
                     if (command == "target")
                     {
-                        //bug
-                        var target = choose.Run();
-
+                       // var target = choose.Run();
+                       choose.Run();
                     }
 
                     //else if (command == "attack")
