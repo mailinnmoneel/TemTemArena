@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using TemTemArena.Scripts.Abilities;
 using TemTemArena.Scripts.Data;
 using TemTemArena.Scripts.Game;
@@ -19,7 +21,7 @@ namespace TemTemArena
         {
 
             #region Graphical User Interface
-            GUI.UseGUI();
+            //GUI.UseGUI();
             GUI.WriteLine(EntryType.Header, Messages.GameHeader);
 
             #endregion
@@ -30,7 +32,7 @@ namespace TemTemArena
             var battle = new BattleCommands(); // --Attack
             var attackGanki = new TargetCmndGanki(); // --Ganki
             var attackMomo = new TargetCmndMomo(); //--Momo
-            Command[] commands = {battle, attackGanki, attackMomo}; //Polymorphisme
+            Command[] commands = {battle, attackGanki, attackMomo, arena}; 
         
             TemTemBattle();
 
@@ -53,16 +55,26 @@ namespace TemTemArena
                 while (arena.IsRunning)
                 {
                     arena.ShowGameInfo();
-                    foreach (var cmd in commands)
-                    {
-                        cmd?.Run(); 
-                    }
+                
+                        if (commands != null)
+                        {
+                            commands.Run(); //bug
+                        }
+                        else
+                        {
+
+                            Console.Clear();
+                            Console.WriteLine($"Ukjent kommando: {commands}");
+                            continue;
+                        }
+                        Console.Clear();
+                    
                     
                     /*
-                    string command = GUI.ReadLine();
+                    string input = GUI.ReadLine();
                     if (command == "exit")
                     {
-                        arena.Stop();
+                        //arena.Stop();
                         continue;
                     }
 

@@ -9,13 +9,14 @@ namespace TemTemArena.Scripts.Game
     class BattleCommands : Command
     {
         public BattleCommands() 
-            : base( "legg til", "Attack" )
+            : base( "Battle", "Attack" )
         {
         }
 
         public override void Run()
         {
-            
+            Console.WriteLine("Choose TemTem to attack");
+            ChooseTargets.Run();
         }
     }
 }

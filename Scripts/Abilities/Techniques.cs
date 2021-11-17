@@ -19,20 +19,18 @@ namespace TemTemArena
 
     public class Techniques
     {
-        //Bruke polymorphism til attacks 
         static BasicAttack basicattack = new BasicAttack();
         static ChainLightning chainlightning = new ChainLightning();
         static Nibble nibble = new Nibble();
-        private static HeavyBlow heavyblow = new HeavyBlow();
-        TemTemTechniques[] techniques = { basicattack, chainlightning, nibble, heavyblow };
+        static HeavyBlow heavyblow = new HeavyBlow();
+        static TemTemTechniques[] techniques = { basicattack, chainlightning, nibble, heavyblow };
 
-
-        protected void TechniqueDictionary()
+       //SKal liste opp tecniques
+        protected internal static void TechniqueDictionary()
         {
             foreach (var technique in techniques)
             {
-                //if(){}
-                technique.Run();
+                technique.Run(); //Ikke ferdig
             }
 
         }

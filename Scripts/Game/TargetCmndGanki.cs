@@ -15,7 +15,8 @@ namespace TemTemArena.Scripts.Game
 
         public override void Run()
         {
-            
+            Console.WriteLine("Choose which technique to use on Ganki");
+            Techniques.TechniqueDictionary();
         }
     }
 }

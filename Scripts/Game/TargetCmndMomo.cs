@@ -15,6 +15,8 @@ namespace TemTemArena.Scripts.Game
 
         public override void Run()
         {
+            Console.WriteLine("Choose which technique to use on Momo");
+            Techniques.TechniqueDictionary();
         }
     }
 }
