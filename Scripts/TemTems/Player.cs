@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TemTemArena.Scripts.Abilities;
 using TemTemArena.Scripts.Data;
 using TemTemArena.Scripts.GUI;
 using TemTemArena.Scripts.Singletons;
@@ -11,7 +12,7 @@ namespace TemTemArena.Scripts.TemTems
 {
     public class Player : TemTem, IYourTemTem
     {
-        public Player(string name, float health, float damage, float stamina, bool isFainted) : base(name, health, damage, stamina, isFainted)
+      public Player(string name, float health, float damage, float stamina, bool isFainted) : base(name, health, damage, isFainted)
         {
 
         }
@@ -28,7 +29,17 @@ namespace TemTemArena.Scripts.TemTems
 
         private Ability PickTechnique()
         {
-            return Combat.ChooseAbility(AbilityList);
+            var basicattack = new BasicAttack();
+            var chainlightning = new ChainLightning();
+            var nibble = new Nibble();
+            TemTemTechniques[] techniques = { basicattack, chainlightning, nibble };
+            foreach (var technique in techniques)
+            {
+                technique.Run();
+            }
+
+            return 0;
+            //return Combat.ChooseAbility(AbilityList);
         }
     }
 }

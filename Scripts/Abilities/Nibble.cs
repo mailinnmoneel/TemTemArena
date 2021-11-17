@@ -3,14 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TemTemArena.Scripts.Abilities;
+using TemTemArena.Scripts.GUI;
 
 namespace TemTemArena
 {
-    class Nibble : Techniques, IBasic
+    class Nibble : TemTemTechniques
     {
-        public float NibbleAttacks(float damage)
+        
+        public Nibble() : base("Nibble")
         {
-            return damage;
+                
         }
+        public override void Run()
+        {
+          
+        }
+
+        public override void Info()
+        {
+            Console.WriteLine("Nibble + some more text about nibble");
+        }
+   
     }
 }
