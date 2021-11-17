@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using TemTemArena.Scripts.Abilities;
 using TemTemArena.Scripts.Data;
 using TemTemArena.Scripts.Game;
 using TemTemArena.Scripts.GUI;
@@ -17,20 +18,30 @@ namespace TemTemArena
         static void Main(string[] args)
         {
 
-            #region Instantiate Controller Classes
-
-            //GUI.CreateGUI();
-            #endregion
-
             #region Graphical User Interface
             GUI.UseGUI();
             GUI.WriteLine(EntryType.Header, Messages.GameHeader);
 
             #endregion
 
-            Arena arena = new Arena(); //-- Main, start, stopp spill, print info. 
-            ChooseTargets choose = new ChooseTargets(); //--Lar deg velge TemTem å slå på. 
-            Combat combat = new Combat(); //--Velg Technique og gjør skade!
+            var arena = new Arena(); //-- Main, exit game, print info. 
+            var choose = new ChooseTargets(); //--Lar deg velge TemTem å slå på. 
+            var combat = new Combat(); //--Velg Technique og gjør skade!
+            var battle = new BattleCommands(); // --Attack
+            var attackGanki = new TargetCmndGanki(); // --Ganki
+            var attackMomo = new TargetCmndMomo(); //--Momo
+            Command[] commands = {battle, attackGanki, attackMomo}; //Polymorphisme
+            //Bruke polymorphism til attacks ? YES!
+            var basicattack = new BasicAttack();
+            var chainlightning = new ChainLightning();
+            var nibble = new Nibble();
+            TemTemTechniques[] techniques = {basicattack, chainlightning, nibble};
+
+            foreach (var technique in techniques)
+            {
+                technique.Run();
+            }
+
             TemTemBattle();
 
             #region CreateTemTems
@@ -47,7 +58,12 @@ namespace TemTemArena
                 while (arena.IsRunning)
                 {
                     arena.ShowGameInfo();
-
+                    foreach (var cmd in commands)
+                    {
+                        cmd?.Run(); 
+                    }
+                    
+                    /*
                     string command = GUI.ReadLine();
                     if (command == "exit")
                     {
@@ -60,9 +76,9 @@ namespace TemTemArena
                        // var target = choose.Run();
                        choose.Run();
                     }
-
+                    */
                     //else if (command == "attack")
-                    //Du sloss med 2 TemTem, programmet vil kjøre igjennom begge to og be deg velge handling per TemTem
+                    //Du sloss med 2 TemTem, programmet vil kjøre igjenom begge to og be deg velge handling per TemTem
                     foreach (var TemTem in TemTemDex.TemTemListe.ActiveTemTems) 
                     {
                         if (TemTem.Name == "Tateru")

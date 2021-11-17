@@ -3,15 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TemTemArena.Scripts.Abilities;
 
 namespace TemTemArena 
 {
-    class BasicAttack : Techniques, IBasic
+    public class BasicAttack : TemTemTechniques
     {
-        public float BasicAttacks(float damage)
+        public BasicAttack() : base("Basic Attack")
         {
-            return damage;
-            
+
+        }
+
+        public override void Run()
+        {
+            //Bruke Basic Attack
+        }
+
+        public override void Info()
+        {
+            Console.WriteLine("BAsic Attack + some info on this technique");
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using TemTemArena.Scripts.Abilities;
 
 namespace TemTemArena
 {
@@ -12,18 +13,36 @@ namespace TemTemArena
         None,
         Basic,
         Nibble,
-        Scratch,
-        HeavyBlow,
+        HeavyBlow, 
         ChainLightning,
     }
 
     public class Techniques
     {
+        //Bruke polymorphism til attacks 
+        static BasicAttack basicattack = new BasicAttack();
+        static ChainLightning chainlightning = new ChainLightning();
+        static Nibble nibble = new Nibble();
+        private static HeavyBlow heavyblow = new HeavyBlow();
+        TemTemTechniques[] techniques = { basicattack, chainlightning, nibble, heavyblow };
+
+
+        protected void TechniqueDictionary()
+        {
+            foreach (var technique in techniques)
+            {
+                //if(){}
+                technique.Run();
+            }
+
+        }
+
         public static Dictionary<Ability, string> abilityNames = new Dictionary<Ability, string>()
         {
             {Ability.Basic, "Basic Attack" },
             {Ability.Nibble, "Nibble" },
             {Ability.HeavyBlow, "Heavy Blow" },
+            {Ability.ChainLightning, "Chain Lighting" },
         };
 
         public static float Use(Ability ability, float damage)
