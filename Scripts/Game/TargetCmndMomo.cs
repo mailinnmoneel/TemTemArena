@@ -15,16 +15,8 @@ namespace TemTemArena.Scripts.Game
 
         public override void Run()
         {
-            var command = Console.ReadLine();
-            if (command == "momo")
-            {
-                Console.WriteLine("You typed Momo");
-                //Choose technique
-            }
-            else if (command != "momo")
-            {
-                Console.WriteLine("Error");
-            }
+            Console.WriteLine("Choose which technique to use on Momo");
+            Techniques.TechniqueDictionary();
         }
     }
 }

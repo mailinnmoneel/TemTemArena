@@ -15,16 +15,8 @@ namespace TemTemArena.Scripts.Game
 
         public override void Run()
         {
-            var command = Console.ReadLine();
-            if (command == "ganki")
-            {
-                Console.WriteLine("You typed Ganki");
-                //Choose technique
-            }
-            else if (command != "ganki")
-            {
-                Console.WriteLine("Error");
-            }
+            Console.WriteLine("Choose which technique to use on Ganki");
+            Techniques.TechniqueDictionary();
         }
     }
 }

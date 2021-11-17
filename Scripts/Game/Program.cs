@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using TemTemArena.Scripts.Abilities;
 using TemTemArena.Scripts.Data;
 using TemTemArena.Scripts.Game;
@@ -30,7 +32,7 @@ namespace TemTemArena
             var battle = new BattleCommands(); // --Attack
             var attackGanki = new TargetCmndGanki(); // --Ganki
             var attackMomo = new TargetCmndMomo(); //--Momo
-            Command[] commands = {battle, attackGanki, attackMomo}; 
+            Command[] commands = {battle, attackGanki, attackMomo, arena}; 
         
             TemTemBattle();
 
@@ -48,14 +50,23 @@ namespace TemTemArena
                 while (arena.IsRunning)
                 {
                     arena.ShowGameInfo();
+                
+                        if (commands != null)
+                        {
+                            commands.Run(); //bug
+                        }
+                        else
+                        {
+
+                            Console.Clear();
+                            Console.WriteLine($"Ukjent kommando: {commands}");
+                            continue;
+                        }
+                        Console.Clear();
                     
-                    foreach (var cmd in commands)
-                    {
-                        cmd?.Run(); 
-                    }
                     
-                    
-                    string command = GUI.ReadLine();
+                    /*
+                    string input = GUI.ReadLine();
                     if (command == "exit")
                     {
                         //arena.Stop();
@@ -67,7 +78,7 @@ namespace TemTemArena
                        // var target = choose.Run();
                        choose.Run();
                     }
-                    
+                    */
                     //else if (command == "attack")
                     //Du sloss med 2 TemTem, programmet vil kjøre igjenom begge to og be deg velge handling per TemTem
                     foreach (var TemTem in TemTemDex.TemTemListe.ActiveTemTems) 

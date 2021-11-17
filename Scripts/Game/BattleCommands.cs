@@ -15,16 +15,8 @@ namespace TemTemArena.Scripts.Game
 
         public override void Run()
         {
-            var command = Console.ReadLine();
-            if (command == "attack")
-            {
-                Console.WriteLine("You typed Attack");
-                //Choose TemTem to hit 
-            }
-            else if(command != "attack")
-            {
-                Console.WriteLine("Error");
-            }
+            Console.WriteLine("Choose TemTem to attack");
+            ChooseTargets.Run();
         }
     }
 }

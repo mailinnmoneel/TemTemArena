@@ -23,7 +23,16 @@ namespace TemTemArena
         }
         public override void Run()
         {
-            IsRunning = false;
+            var command = Console.ReadLine();
+            if (command == "exit")
+            {
+                IsRunning = false;
+                Console.WriteLine("You typed Exit :(");
+            }
+            else if (command != "exit")
+            {
+                Console.WriteLine("Try again!");
+            }
         }
 
         //public void Stop() => IsRunning = false;

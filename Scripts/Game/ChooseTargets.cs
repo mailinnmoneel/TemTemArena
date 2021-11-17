@@ -13,7 +13,7 @@ namespace TemTemArena.Scripts.Game
     class ChooseTargets
     {
       
-        public INPCTemTem Run()
+        public static INPCTemTem Run()
         {
             FindTarget(); 
             var target = GUI.GUI.ReadLine(); 
