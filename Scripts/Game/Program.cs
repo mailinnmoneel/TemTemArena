@@ -19,7 +19,7 @@ namespace TemTemArena
         {
 
             #region Graphical User Interface
-            GUI.UseGUI();
+            //GUI.UseGUI();
             GUI.WriteLine(EntryType.Header, Messages.GameHeader);
 
             #endregion
@@ -30,7 +30,7 @@ namespace TemTemArena
             var battle = new BattleCommands(); // --Attack
             var attackGanki = new TargetCmndGanki(); // --Ganki
             var attackMomo = new TargetCmndMomo(); //--Momo
-            Command[] commands = {battle, attackGanki, attackMomo}; //Polymorphisme
+            Command[] commands = {battle, attackGanki, attackMomo}; 
         
             TemTemBattle();
 
@@ -48,16 +48,17 @@ namespace TemTemArena
                 while (arena.IsRunning)
                 {
                     arena.ShowGameInfo();
+                    
                     foreach (var cmd in commands)
                     {
                         cmd?.Run(); 
                     }
                     
-                    /*
+                    
                     string command = GUI.ReadLine();
                     if (command == "exit")
                     {
-                        arena.Stop();
+                        //arena.Stop();
                         continue;
                     }
 
@@ -66,7 +67,7 @@ namespace TemTemArena
                        // var target = choose.Run();
                        choose.Run();
                     }
-                    */
+                    
                     //else if (command == "attack")
                     //Du sloss med 2 TemTem, programmet vil kjøre igjenom begge to og be deg velge handling per TemTem
                     foreach (var TemTem in TemTemDex.TemTemListe.ActiveTemTems) 

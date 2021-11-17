@@ -11,7 +11,7 @@ namespace TemTemArena.Scripts.TemTems
 {
     public class NPCTemTem : TemTem, INPCTemTem
     {
-        public NPCTemTem(string name, float health, float damage, float stamina, bool isFainted) : base(name, health, damage, stamina, isFainted)
+        public NPCTemTem(string name, float health, float damage, float stamina, bool isFainted) : base(name, health, damage, isFainted)
         {
 
         }

@@ -18,7 +18,7 @@ namespace TemTemArena.Scripts.Data
             "************************",
             "Available commands are;",
             "Exit",
-            "Target",
+            "Attack",
             "************************",
         };
 
