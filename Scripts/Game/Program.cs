@@ -31,17 +31,7 @@ namespace TemTemArena
             var attackGanki = new TargetCmndGanki(); // --Ganki
             var attackMomo = new TargetCmndMomo(); //--Momo
             Command[] commands = {battle, attackGanki, attackMomo}; //Polymorphisme
-            //Bruke polymorphism til attacks ? YES!
-            var basicattack = new BasicAttack();
-            var chainlightning = new ChainLightning();
-            var nibble = new Nibble();
-            TemTemTechniques[] techniques = {basicattack, chainlightning, nibble};
-
-            foreach (var technique in techniques)
-            {
-                technique.Run();
-            }
-
+        
             TemTemBattle();
 
             //Synergi 
