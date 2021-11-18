@@ -50,6 +50,6 @@ namespace TemTemArena
 
         }
         */
-        public abstract float Attack();
+        //public abstract float Attack();
     }
 }

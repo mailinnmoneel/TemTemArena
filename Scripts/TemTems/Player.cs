@@ -16,19 +16,22 @@ namespace TemTemArena.Scripts.TemTems
         {
 
         }
-        public override float Attack()
-        {
-            var ability = PickTechnique();
 
-            var damage = Techniques.Use(ability, Damage);
+      public float AttackNpc()
+      {
+          var ability = PickTechnique();
 
-            var message = $"{Name} used {ability}. It did {damage} damage!";
-            GUI.GUI.WriteLine(EntryType.Combat, message, true);
-            return damage;
-        }
+          var damage = Techniques.Use(ability, Damage);
 
+          var message = $"{Name} used {ability}. It did {damage} damage!";
+          GUI.GUI.WriteLine(EntryType.Combat, message, true);
+          return damage;
+      }
         private Ability PickTechnique()
         {
+            //pickTarget
+            //attackMomo.Run();
+            //attackGanki.Run();
             var basicattack = new BasicAttack();
             var chainlightning = new ChainLightning();
             var nibble = new Nibble();
@@ -41,5 +44,7 @@ namespace TemTemArena.Scripts.TemTems
             return 0;
             //return Combat.ChooseAbility(AbilityList);
         }
+
+ 
     }
 }

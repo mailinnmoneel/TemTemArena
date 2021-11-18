@@ -15,7 +15,7 @@ namespace TemTemArena.Scripts.TemTems
         {
 
         }
-        public override float Attack()
+        public float Attack()
         {
             Ability ability = ChooseAITechnique();
 

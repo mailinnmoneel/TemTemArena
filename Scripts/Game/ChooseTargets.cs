@@ -15,7 +15,8 @@ namespace TemTemArena.Scripts.Game
       
         public static INPCTemTem Run()
         {
-            FindTarget(); 
+            FindTarget(); //Loop NPC og print navnene til konsollen
+            Console.WriteLine("You are in ChooseTargets.Run();");//bug
             var target = GUI.GUI.ReadLine(); 
             foreach (INPCTemTem npc in TemTemDex.TemTemListe.ActiveTemTems) 
             {
@@ -27,8 +28,8 @@ namespace TemTemArena.Scripts.Game
         public static void FindTarget()
         {
             var index = 0;
-            string[] AvailableTargets = new string[20];
-            foreach (var npc in TemTemDex.TemTemListe.ActiveTemTems) //Loop NPC og print navnene til konsollen
+            string[] AvailableTargets = new string[5];
+            foreach (INPCTemTem npc in TemTemDex.TemTemListe.ActiveTemTems) 
             {
                 AvailableTargets[index] = npc.Name;
                 index++;

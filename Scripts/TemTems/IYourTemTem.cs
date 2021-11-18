@@ -8,6 +8,7 @@ namespace TemTemArena.Scripts.TemTems
 {
     interface IYourTemTem
     {
+        public float AttackNpc();
         public string Name { get; set; }
     }
 }

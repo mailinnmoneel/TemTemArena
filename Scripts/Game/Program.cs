@@ -27,12 +27,12 @@ namespace TemTemArena
             #endregion
 
             var arena = new Arena(); //-- Main, exit game, print info. 
-            var choose = new ChooseTargets(); //--Lar deg velge TemTem å slå på. 
+            //var choose = new ChooseTargets(); //--Lar deg velge TemTem å slå på. 
             var combat = new Combat(); //--Velg Technique og gjør skade!
             var battle = new BattleCommands(); // --Attack
-            var attackGanki = new TargetCmndGanki(); // --Ganki
-            var attackMomo = new TargetCmndMomo(); //--Momo
-            Command[] commands = {battle, attackGanki, attackMomo, arena}; 
+            //var attackGanki = new TargetCmndGanki(); // --Ganki
+            //var attackMomo = new TargetCmndMomo(); //--Momo
+            //Command[] commands = {battle, attackGanki, attackMomo,}; 
         
             TemTemBattle();
 
@@ -46,57 +46,46 @@ namespace TemTemArena
             #endregion
 
             void TemTemBattle()
-            {
+            { 
+                arena.ShowGameInfo();
                 while (arena.IsRunning)
                 {
-                    arena.ShowGameInfo();
-                
-                        if (commands != null)
-                        {
-                            commands.Run(); //bug
-                        }
-                        else
-                        {
-
-                            Console.Clear();
-                            Console.WriteLine($"Ukjent kommando: {commands}");
+              
+                    string command = GUI.ReadLine();
+                    switch (command)
+                    {
+                        case "exit":
+                            arena.Stop();
                             continue;
-                        }
-                        Console.Clear();
-                    
-                    
-                    /*
-                    string input = GUI.ReadLine();
-                    if (command == "exit")
-                    {
-                        //arena.Stop();
-                        continue;
-                    }
-
-                    if (command == "target")
-                    {
-                       // var target = choose.Run();
-                       choose.Run();
-                    }
-                    */
-                    //else if (command == "attack")
-                    //Du sloss med 2 TemTem, programmet vil kjøre igjenom begge to og be deg velge handling per TemTem
-                    foreach (var TemTem in TemTemDex.TemTemListe.ActiveTemTems) 
-                    {
-                        if (TemTem.Name == "Tateru")
-                        {
-                            var damage = TemTem.Attack();
-                            combat.CauseDamage(damage);
-
-                        }
-                        else if (TemTem.Name == "Nessla")
-                        {
-                            var damage = TemTem.Attack();
-                            combat.CauseDamage(damage);
-                        }
+                        case "attack":
+                            battle.Run();
+                            LoopYourTemtem(combat); //bug
+                            break;
                     }
                 }
 
+            }
+        }
+
+        private static void LoopYourTemtem(Combat combat)
+        {
+            foreach (var temTem in TemTemDex.TemTemListe.ActiveTemTems)
+            {
+                var temtem = (IYourTemTem) temTem;
+                Console.WriteLine("You are in LoopYourTemtem");
+                temtem.Name = Console.ReadLine();
+                if (temtem.Name == "Tateru")
+                {
+                    Console.WriteLine("Choose a skill to use for Tateru");
+                    var damage = temtem.AttackNpc();
+                    combat.CauseDamage(damage);
+                }
+                else if (temtem.Name == "Nessla")
+                {
+                    Console.WriteLine("Choose a skill to use for Nessla");
+                    var damage = temtem.AttackNpc();
+                    combat.CauseDamage(damage);
+                }
             }
         }
     }

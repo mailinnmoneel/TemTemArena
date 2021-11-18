@@ -13,29 +13,16 @@ using TemTemArena.Scripts.TemTems;
 
 namespace TemTemArena
 {
-    public class Arena : Command
+    public class Arena
     {
         public bool IsRunning { get; private set; }
 
-        public Arena() : base("Exit Game", "exit")
+        public Arena()
         {
             IsRunning = true;
         }
-        public override void Run()
-        {
-            var command = Console.ReadLine();
-            if (command == "exit")
-            {
-                IsRunning = false;
-                Console.WriteLine("You typed Exit :(");
-            }
-            else if (command != "exit")
-            {
-                Console.WriteLine("Try again!");
-            }
-        }
-
-        //public void Stop() => IsRunning = false;
+       
+        public void Stop() => IsRunning = false;
 
         public void ShowGameInfo()
         {

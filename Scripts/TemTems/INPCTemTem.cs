@@ -9,5 +9,6 @@ namespace TemTemArena.Scripts.TemTems
     interface INPCTemTem
     {
         public string Name { get; set; }
+        public float Attack();
     }
 }
