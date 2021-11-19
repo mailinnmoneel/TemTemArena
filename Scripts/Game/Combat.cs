@@ -14,14 +14,44 @@ namespace TemTemArena
     {
         public void CauseDamage(float damage)
         {
-            foreach (var TemTem in TemTemDex.TemTemListe.ActiveTemTems)
+            foreach (var TemTem in TemTemDex.Instance.ActiveTemTems)
             {
                 if (TemTem.IsFainted) continue;
                 TemTem.LooseHealth(damage);
             }
         }
+        void RunCombat()
+        {
+            var playerTemTems = TemTemDex.Instance.Arena.PlayerTemTems;
+            var enemyTemTems = TemTemDex.Instance.Arena.EnemyTemTems;
+
+            foreach (var temtem in playerTemTems)
+            {
+                var listOfAbilities = temtem.GetAbilities();
+
+                LetPlayerChoose(listOfAbilities);
+            }
+            foreach (var temtem in enemyTemTems)
+            {
+                var listOfAbilities = temtem.GetAbilities();
+
+                LetComputerChoose(listOfAbilities);
+            }
+        }
+
+        private void LetComputerChoose(object listOfAbilities)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void LetPlayerChoose(object listOfAbilities)
+        {
+            throw new NotImplementedException();
+        }
+
 
         //nb
+        /*
         public static Ability ChooseAbility(List<Ability> abilities)
         {
             string[] availableabilities = new string[abilities.Count];
@@ -52,6 +82,7 @@ namespace TemTemArena
             }
             return Ability.None;
         }
+        */
     }
 }
 

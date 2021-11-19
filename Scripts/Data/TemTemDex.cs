@@ -8,11 +8,11 @@ namespace TemTemArena
 {
     class TemTemDex
     {
-    
-     //Singleton
-     public static TemTemDex TemTemListe { get; } = new TemTemDex();
-     private List<TemTem> _temTems;
-     public List<TemTem> ActiveTemTems => _temTems ??= new List<TemTem>(); 
-        
+        //Singleton
+        public static TemTemDex Instance { get; } = new TemTemDex();
+        private List<TemTem> _temTems;
+        public List<TemTem> ActiveTemTems => _temTems ??= new List<TemTem>();
+
+        public Arena Arena { get; set; }
     }
 }
