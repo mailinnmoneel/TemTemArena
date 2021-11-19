@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 using TemTemArena.Scripts.Data;
 using TemTemArena.Scripts.GUI;
 using TemTemArena.Scripts.Singletons;
-using TemTemArena.Scripts.TemTems;
 
 namespace TemTemArena.Scripts.Game
 {
     class ChooseTargets
     {
-      
+      /*
         public static INPCTemTem Run()
         {
             FindTarget(); //Loop NPC og print navnene til konsollen
@@ -36,5 +35,6 @@ namespace TemTemArena.Scripts.Game
             }
             GUI.GUI.WriteLine(EntryType.Command, AvailableTargets);
         }
+      */
     }
 }
